@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 
-namespace AIA.Code
+namespace AIA
 {
     public class BasePage : System.Web.UI.Page
     {
@@ -29,6 +29,8 @@ namespace AIA.Code
 
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(culture);
+
+            base.InitializeCulture();
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿using AIA.Code;
+﻿using AIA;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -39,10 +39,7 @@ namespace ProjetGabaritGCWeb.gcweb_theme
             cookie.Value = culture;
             Response.Cookies.Add(cookie);
 
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(culture);
-
-            textSearch.Attributes.Add("placeholder", GetLocalResourceObject("searchPlaceholder").ToString());
+            Response.Redirect(this.Page.Request.Url.ToString(), true);
         }
 
         protected void btnSearchSubmit_ServerClick(object sender, EventArgs e)

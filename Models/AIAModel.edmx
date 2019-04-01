@@ -1,0 +1,847 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_aiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChoiceHistories">
+          <Key>
+            <PropertyRef Name="choiceHistoryID" />
+          </Key>
+          <Property Name="choiceHistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="choiceID" Type="int" Nullable="false" />
+          <Property Name="questionID" Type="int" Nullable="false" />
+          <Property Name="textEN" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="textFR" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="position" Type="int" Nullable="false" />
+          <Property Name="dateModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Choices">
+          <Key>
+            <PropertyRef Name="choiceID" />
+          </Key>
+          <Property Name="choiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="questionID" Type="int" Nullable="false" />
+          <Property Name="textEN" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="textFR" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="position" Type="int" Nullable="false" />
+          <Property Name="dateCreated" Type="datetime" Nullable="false" />
+          <Property Name="dateModified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Conditions">
+          <Key>
+            <PropertyRef Name="conditionID" />
+          </Key>
+          <Property Name="conditionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formID" Type="int" Nullable="false" />
+          <Property Name="sourceQuestionID" Type="int" Nullable="false" />
+          <Property Name="sourceChoiceID" Type="int" Nullable="false" />
+          <Property Name="destinationQuestionID" Type="int" Nullable="false" />
+          <Property Name="isDisabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Forms">
+          <Key>
+            <PropertyRef Name="formID" />
+          </Key>
+          <Property Name="formID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameEN" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="nameFR" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="dateCreated" Type="datetime" Nullable="false" />
+          <Property Name="dateModified" Type="datetime" />
+          <Property Name="isDisabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterScores">
+          <Key>
+            <PropertyRef Name="masterScoreID" />
+          </Key>
+          <Property Name="masterScoreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formID" Type="int" Nullable="false" />
+          <Property Name="nameEN" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="nameFR" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="helpTextEN" Type="nvarchar" MaxLength="512" />
+          <Property Name="helpTextFR" Type="nvarchar" MaxLength="512" />
+          <Property Name="position" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionHistories">
+          <Key>
+            <PropertyRef Name="questionHistoryID" />
+          </Key>
+          <Property Name="questionHistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="questionID" Type="int" Nullable="false" />
+          <Property Name="questionTypeID" Type="int" Nullable="false" />
+          <Property Name="questionNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="labelEN" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="labelFR" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="helpTextEN" Type="nvarchar" MaxLength="512" />
+          <Property Name="helpTextFR" Type="nvarchar" MaxLength="512" />
+          <Property Name="noteEN" Type="nvarchar" MaxLength="512" />
+          <Property Name="noteFR" Type="nvarchar" MaxLength="512" />
+          <Property Name="minValue" Type="int" />
+          <Property Name="maxValue" Type="int" />
+          <Property Name="position" Type="int" Nullable="false" />
+          <Property Name="dateModified" Type="datetime" Nullable="false" />
+          <Property Name="isRequired" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="questionID" />
+          </Key>
+          <Property Name="questionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="questionTypeID" Type="int" Nullable="false" />
+          <Property Name="sectionID" Type="int" Nullable="false" />
+          <Property Name="questionNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="labelEN" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="labelFR" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="helpTextEN" Type="nvarchar" MaxLength="512" />
+          <Property Name="helpTextFR" Type="nvarchar" MaxLength="512" />
+          <Property Name="noteEN" Type="nvarchar" MaxLength="512" />
+          <Property Name="noteFR" Type="nvarchar" MaxLength="512" />
+          <Property Name="minValue" Type="int" />
+          <Property Name="maxValue" Type="int" />
+          <Property Name="position" Type="int" Nullable="false" />
+          <Property Name="dateCreated" Type="datetime" Nullable="false" />
+          <Property Name="dateModified" Type="datetime" />
+          <Property Name="isRequired" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionTypes">
+          <Key>
+            <PropertyRef Name="questionTypeID" />
+          </Key>
+          <Property Name="questionTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nameFR" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScoreHistories">
+          <Key>
+            <PropertyRef Name="scoreHistoryID" />
+          </Key>
+          <Property Name="scoreHistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="scoreID" Type="int" Nullable="false" />
+          <Property Name="masterScoreID" Type="int" Nullable="false" />
+          <Property Name="choiceID" Type="int" Nullable="false" />
+          <Property Name="y" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="n" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="na" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tm" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Scores">
+          <Key>
+            <PropertyRef Name="scoreID" />
+          </Key>
+          <Property Name="scoreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="masterScoreID" Type="int" Nullable="false" />
+          <Property Name="choiceID" Type="int" Nullable="false" />
+          <Property Name="y" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="n" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="na" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tm" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="sectionID" />
+          </Key>
+          <Property Name="sectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formID" Type="int" Nullable="false" />
+          <Property Name="titleEN" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="titleFR" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="position" Type="int" Nullable="false" />
+          <Property Name="isDisabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ChoiceHistories_Choices">
+          <End Role="Choices" Type="Self.Choices" Multiplicity="1" />
+          <End Role="ChoiceHistories" Type="Self.ChoiceHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Choices">
+              <PropertyRef Name="choiceID" />
+            </Principal>
+            <Dependent Role="ChoiceHistories">
+              <PropertyRef Name="choiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Choices_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="Choices" Type="Self.Choices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionID" />
+            </Principal>
+            <Dependent Role="Choices">
+              <PropertyRef Name="questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conditions_Forms">
+          <End Role="Forms" Type="Self.Forms" Multiplicity="1" />
+          <End Role="Conditions" Type="Self.Conditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="formID" />
+            </Principal>
+            <Dependent Role="Conditions">
+              <PropertyRef Name="formID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterScores_Forms">
+          <End Role="Forms" Type="Self.Forms" Multiplicity="1" />
+          <End Role="MasterScores" Type="Self.MasterScores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="formID" />
+            </Principal>
+            <Dependent Role="MasterScores">
+              <PropertyRef Name="formID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionHistories_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="QuestionHistories" Type="Self.QuestionHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionID" />
+            </Principal>
+            <Dependent Role="QuestionHistories">
+              <PropertyRef Name="questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_QuestionTypes">
+          <End Role="QuestionTypes" Type="Self.QuestionTypes" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionTypes">
+              <PropertyRef Name="questionTypeID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="questionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Sections">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="sectionID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="sectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScoreHistories_Scores">
+          <End Role="Scores" Type="Self.Scores" Multiplicity="1" />
+          <End Role="ScoreHistories" Type="Self.ScoreHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scores">
+              <PropertyRef Name="scoreID" />
+            </Principal>
+            <Dependent Role="ScoreHistories">
+              <PropertyRef Name="scoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_MasterScores">
+          <End Role="MasterScores" Type="Self.MasterScores" Multiplicity="1" />
+          <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterScores">
+              <PropertyRef Name="masterScoreID" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="masterScoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sections_Forms">
+          <End Role="Forms" Type="Self.Forms" Multiplicity="1" />
+          <End Role="Sections" Type="Self.Sections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="formID" />
+            </Principal>
+            <Dependent Role="Sections">
+              <PropertyRef Name="formID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_aiaModelStoreContainer">
+          <EntitySet Name="ChoiceHistories" EntityType="Self.ChoiceHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Choices" EntityType="Self.Choices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conditions" EntityType="Self.Conditions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Forms" EntityType="Self.Forms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterScores" EntityType="Self.MasterScores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionHistories" EntityType="Self.QuestionHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScoreHistories" EntityType="Self.ScoreHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scores" EntityType="Self.Scores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChoiceHistories_Choices" Association="Self.FK_ChoiceHistories_Choices">
+            <End Role="Choices" EntitySet="Choices" />
+            <End Role="ChoiceHistories" EntitySet="ChoiceHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Choices_Questions" Association="Self.FK_Choices_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Choices" EntitySet="Choices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conditions_Forms" Association="Self.FK_Conditions_Forms">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="Conditions" EntitySet="Conditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterScores_Forms" Association="Self.FK_MasterScores_Forms">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="MasterScores" EntitySet="MasterScores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionHistories_Questions" Association="Self.FK_QuestionHistories_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QuestionHistories" EntitySet="QuestionHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_QuestionTypes" Association="Self.FK_Questions_QuestionTypes">
+            <End Role="QuestionTypes" EntitySet="QuestionTypes" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Sections" Association="Self.FK_Questions_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScoreHistories_Scores" Association="Self.FK_ScoreHistories_Scores">
+            <End Role="Scores" EntitySet="Scores" />
+            <End Role="ScoreHistories" EntitySet="ScoreHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_MasterScores" Association="Self.FK_Scores_MasterScores">
+            <End Role="MasterScores" EntitySet="MasterScores" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sections_Forms" Association="Self.FK_Sections_Forms">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="Sections" EntitySet="Sections" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_aiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ChoiceHistory">
+          <Key>
+            <PropertyRef Name="choiceHistoryID" />
+          </Key>
+          <Property Name="choiceHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="choiceID" Type="Int32" Nullable="false" />
+          <Property Name="questionID" Type="Int32" Nullable="false" />
+          <Property Name="textEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="textFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="position" Type="Int32" Nullable="false" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Choice" Relationship="Self.FK_ChoiceHistories_Choices" FromRole="ChoiceHistories" ToRole="Choices" />
+        </EntityType>
+        <EntityType Name="Choice">
+          <Key>
+            <PropertyRef Name="choiceID" />
+          </Key>
+          <Property Name="choiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="questionID" Type="Int32" Nullable="false" />
+          <Property Name="textEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="textFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="position" Type="Int32" Nullable="false" />
+          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateModified" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ChoiceHistories" Relationship="Self.FK_ChoiceHistories_Choices" FromRole="Choices" ToRole="ChoiceHistories" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Choices_Questions" FromRole="Choices" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Condition">
+          <Key>
+            <PropertyRef Name="conditionID" />
+          </Key>
+          <Property Name="conditionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formID" Type="Int32" Nullable="false" />
+          <Property Name="sourceQuestionID" Type="Int32" Nullable="false" />
+          <Property Name="sourceChoiceID" Type="Int32" Nullable="false" />
+          <Property Name="destinationQuestionID" Type="Int32" Nullable="false" />
+          <Property Name="isDisabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Form" Relationship="Self.FK_Conditions_Forms" FromRole="Conditions" ToRole="Forms" />
+        </EntityType>
+        <EntityType Name="Form">
+          <Key>
+            <PropertyRef Name="formID" />
+          </Key>
+          <Property Name="formID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameEN" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nameFR" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateModified" Type="DateTime" Precision="3" />
+          <Property Name="isDisabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Conditions" Relationship="Self.FK_Conditions_Forms" FromRole="Forms" ToRole="Conditions" />
+          <NavigationProperty Name="MasterScores" Relationship="Self.FK_MasterScores_Forms" FromRole="Forms" ToRole="MasterScores" />
+          <NavigationProperty Name="Sections" Relationship="Self.FK_Sections_Forms" FromRole="Forms" ToRole="Sections" />
+        </EntityType>
+        <EntityType Name="MasterScore">
+          <Key>
+            <PropertyRef Name="masterScoreID" />
+          </Key>
+          <Property Name="masterScoreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formID" Type="Int32" Nullable="false" />
+          <Property Name="nameEN" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nameFR" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="helpTextEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="helpTextFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="position" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Form" Relationship="Self.FK_MasterScores_Forms" FromRole="MasterScores" ToRole="Forms" />
+          <NavigationProperty Name="Scores" Relationship="Self.FK_Scores_MasterScores" FromRole="MasterScores" ToRole="Scores" />
+        </EntityType>
+        <EntityType Name="QuestionHistory">
+          <Key>
+            <PropertyRef Name="questionHistoryID" />
+          </Key>
+          <Property Name="questionHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="questionID" Type="Int32" Nullable="false" />
+          <Property Name="questionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="questionNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="labelEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="labelFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="helpTextEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="helpTextFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="noteEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="noteFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="minValue" Type="Int32" />
+          <Property Name="maxValue" Type="Int32" />
+          <Property Name="position" Type="Int32" Nullable="false" />
+          <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isRequired" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_QuestionHistories_Questions" FromRole="QuestionHistories" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionID" />
+          </Key>
+          <Property Name="questionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="questionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="sectionID" Type="Int32" Nullable="false" />
+          <Property Name="questionNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="labelEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="labelFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="helpTextEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="helpTextFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="noteEN" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="noteFR" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="minValue" Type="Int32" />
+          <Property Name="maxValue" Type="Int32" />
+          <Property Name="position" Type="Int32" Nullable="false" />
+          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateModified" Type="DateTime" Precision="3" />
+          <Property Name="isRequired" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Choices" Relationship="Self.FK_Choices_Questions" FromRole="Questions" ToRole="Choices" />
+          <NavigationProperty Name="QuestionHistories" Relationship="Self.FK_QuestionHistories_Questions" FromRole="Questions" ToRole="QuestionHistories" />
+          <NavigationProperty Name="QuestionType" Relationship="Self.FK_Questions_QuestionTypes" FromRole="Questions" ToRole="QuestionTypes" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_Questions_Sections" FromRole="Questions" ToRole="Sections" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="questionTypeID" />
+          </Key>
+          <Property Name="questionTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nameFR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_QuestionTypes" FromRole="QuestionTypes" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="ScoreHistory">
+          <Key>
+            <PropertyRef Name="scoreHistoryID" />
+          </Key>
+          <Property Name="scoreHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="scoreID" Type="Int32" Nullable="false" />
+          <Property Name="masterScoreID" Type="Int32" Nullable="false" />
+          <Property Name="choiceID" Type="Int32" Nullable="false" />
+          <Property Name="y" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="n" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="na" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tm" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Score" Relationship="Self.FK_ScoreHistories_Scores" FromRole="ScoreHistories" ToRole="Scores" />
+        </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="scoreID" />
+          </Key>
+          <Property Name="scoreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="masterScoreID" Type="Int32" Nullable="false" />
+          <Property Name="choiceID" Type="Int32" Nullable="false" />
+          <Property Name="y" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="n" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="na" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tm" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="MasterScore" Relationship="Self.FK_Scores_MasterScores" FromRole="Scores" ToRole="MasterScores" />
+          <NavigationProperty Name="ScoreHistories" Relationship="Self.FK_ScoreHistories_Scores" FromRole="Scores" ToRole="ScoreHistories" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="sectionID" />
+          </Key>
+          <Property Name="sectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formID" Type="Int32" Nullable="false" />
+          <Property Name="titleEN" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="titleFR" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="position" Type="Int32" Nullable="false" />
+          <Property Name="isDisabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Form" Relationship="Self.FK_Sections_Forms" FromRole="Sections" ToRole="Forms" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Sections" FromRole="Sections" ToRole="Questions" />
+        </EntityType>
+        <Association Name="FK_ChoiceHistories_Choices">
+          <End Role="Choices" Type="Self.Choice" Multiplicity="1" />
+          <End Role="ChoiceHistories" Type="Self.ChoiceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Choices">
+              <PropertyRef Name="choiceID" />
+            </Principal>
+            <Dependent Role="ChoiceHistories">
+              <PropertyRef Name="choiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Choices_Questions">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+          <End Role="Choices" Type="Self.Choice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionID" />
+            </Principal>
+            <Dependent Role="Choices">
+              <PropertyRef Name="questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conditions_Forms">
+          <End Role="Forms" Type="Self.Form" Multiplicity="1" />
+          <End Role="Conditions" Type="Self.Condition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="formID" />
+            </Principal>
+            <Dependent Role="Conditions">
+              <PropertyRef Name="formID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterScores_Forms">
+          <End Role="Forms" Type="Self.Form" Multiplicity="1" />
+          <End Role="MasterScores" Type="Self.MasterScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="formID" />
+            </Principal>
+            <Dependent Role="MasterScores">
+              <PropertyRef Name="formID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sections_Forms">
+          <End Role="Forms" Type="Self.Form" Multiplicity="1" />
+          <End Role="Sections" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="formID" />
+            </Principal>
+            <Dependent Role="Sections">
+              <PropertyRef Name="formID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_MasterScores">
+          <End Role="MasterScores" Type="Self.MasterScore" Multiplicity="1" />
+          <End Role="Scores" Type="Self.Score" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterScores">
+              <PropertyRef Name="masterScoreID" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="masterScoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionHistories_Questions">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionHistories" Type="Self.QuestionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionID" />
+            </Principal>
+            <Dependent Role="QuestionHistories">
+              <PropertyRef Name="questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_QuestionTypes">
+          <End Role="QuestionTypes" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionTypes">
+              <PropertyRef Name="questionTypeID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="questionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Sections">
+          <End Role="Sections" Type="Self.Section" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="sectionID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="sectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScoreHistories_Scores">
+          <End Role="Scores" Type="Self.Score" Multiplicity="1" />
+          <End Role="ScoreHistories" Type="Self.ScoreHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scores">
+              <PropertyRef Name="scoreID" />
+            </Principal>
+            <Dependent Role="ScoreHistories">
+              <PropertyRef Name="scoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChoiceHistories" EntityType="Self.ChoiceHistory" />
+          <EntitySet Name="Choices" EntityType="Self.Choice" />
+          <EntitySet Name="Conditions" EntityType="Self.Condition" />
+          <EntitySet Name="Forms" EntityType="Self.Form" />
+          <EntitySet Name="MasterScores" EntityType="Self.MasterScore" />
+          <EntitySet Name="QuestionHistories" EntityType="Self.QuestionHistory" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
+          <EntitySet Name="ScoreHistories" EntityType="Self.ScoreHistory" />
+          <EntitySet Name="Scores" EntityType="Self.Score" />
+          <EntitySet Name="Sections" EntityType="Self.Section" />
+          <AssociationSet Name="FK_ChoiceHistories_Choices" Association="Self.FK_ChoiceHistories_Choices">
+            <End Role="Choices" EntitySet="Choices" />
+            <End Role="ChoiceHistories" EntitySet="ChoiceHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Choices_Questions" Association="Self.FK_Choices_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Choices" EntitySet="Choices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conditions_Forms" Association="Self.FK_Conditions_Forms">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="Conditions" EntitySet="Conditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterScores_Forms" Association="Self.FK_MasterScores_Forms">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="MasterScores" EntitySet="MasterScores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sections_Forms" Association="Self.FK_Sections_Forms">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="Sections" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_MasterScores" Association="Self.FK_Scores_MasterScores">
+            <End Role="MasterScores" EntitySet="MasterScores" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionHistories_Questions" Association="Self.FK_QuestionHistories_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QuestionHistories" EntitySet="QuestionHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_QuestionTypes" Association="Self.FK_Questions_QuestionTypes">
+            <End Role="QuestionTypes" EntitySet="QuestionTypes" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Sections" Association="Self.FK_Questions_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScoreHistories_Scores" Association="Self.FK_ScoreHistories_Scores">
+            <End Role="Scores" EntitySet="Scores" />
+            <End Role="ScoreHistories" EntitySet="ScoreHistories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_aiaModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ChoiceHistories">
+            <EntityTypeMapping TypeName="db_aiaModel.ChoiceHistory">
+              <MappingFragment StoreEntitySet="ChoiceHistories">
+                <ScalarProperty Name="choiceHistoryID" ColumnName="choiceHistoryID" />
+                <ScalarProperty Name="choiceID" ColumnName="choiceID" />
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="textEN" ColumnName="textEN" />
+                <ScalarProperty Name="textFR" ColumnName="textFR" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Choices">
+            <EntityTypeMapping TypeName="db_aiaModel.Choice">
+              <MappingFragment StoreEntitySet="Choices">
+                <ScalarProperty Name="choiceID" ColumnName="choiceID" />
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="textEN" ColumnName="textEN" />
+                <ScalarProperty Name="textFR" ColumnName="textFR" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conditions">
+            <EntityTypeMapping TypeName="db_aiaModel.Condition">
+              <MappingFragment StoreEntitySet="Conditions">
+                <ScalarProperty Name="conditionID" ColumnName="conditionID" />
+                <ScalarProperty Name="formID" ColumnName="formID" />
+                <ScalarProperty Name="sourceQuestionID" ColumnName="sourceQuestionID" />
+                <ScalarProperty Name="sourceChoiceID" ColumnName="sourceChoiceID" />
+                <ScalarProperty Name="destinationQuestionID" ColumnName="destinationQuestionID" />
+                <ScalarProperty Name="isDisabled" ColumnName="isDisabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Forms">
+            <EntityTypeMapping TypeName="db_aiaModel.Form">
+              <MappingFragment StoreEntitySet="Forms">
+                <ScalarProperty Name="formID" ColumnName="formID" />
+                <ScalarProperty Name="nameEN" ColumnName="nameEN" />
+                <ScalarProperty Name="nameFR" ColumnName="nameFR" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="isDisabled" ColumnName="isDisabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterScores">
+            <EntityTypeMapping TypeName="db_aiaModel.MasterScore">
+              <MappingFragment StoreEntitySet="MasterScores">
+                <ScalarProperty Name="masterScoreID" ColumnName="masterScoreID" />
+                <ScalarProperty Name="formID" ColumnName="formID" />
+                <ScalarProperty Name="nameEN" ColumnName="nameEN" />
+                <ScalarProperty Name="nameFR" ColumnName="nameFR" />
+                <ScalarProperty Name="helpTextEN" ColumnName="helpTextEN" />
+                <ScalarProperty Name="helpTextFR" ColumnName="helpTextFR" />
+                <ScalarProperty Name="position" ColumnName="position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionHistories">
+            <EntityTypeMapping TypeName="db_aiaModel.QuestionHistory">
+              <MappingFragment StoreEntitySet="QuestionHistories">
+                <ScalarProperty Name="questionHistoryID" ColumnName="questionHistoryID" />
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="questionTypeID" ColumnName="questionTypeID" />
+                <ScalarProperty Name="questionNumber" ColumnName="questionNumber" />
+                <ScalarProperty Name="labelEN" ColumnName="labelEN" />
+                <ScalarProperty Name="labelFR" ColumnName="labelFR" />
+                <ScalarProperty Name="helpTextEN" ColumnName="helpTextEN" />
+                <ScalarProperty Name="helpTextFR" ColumnName="helpTextFR" />
+                <ScalarProperty Name="noteEN" ColumnName="noteEN" />
+                <ScalarProperty Name="noteFR" ColumnName="noteFR" />
+                <ScalarProperty Name="minValue" ColumnName="minValue" />
+                <ScalarProperty Name="maxValue" ColumnName="maxValue" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="isRequired" ColumnName="isRequired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="db_aiaModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="questionTypeID" ColumnName="questionTypeID" />
+                <ScalarProperty Name="sectionID" ColumnName="sectionID" />
+                <ScalarProperty Name="questionNumber" ColumnName="questionNumber" />
+                <ScalarProperty Name="labelEN" ColumnName="labelEN" />
+                <ScalarProperty Name="labelFR" ColumnName="labelFR" />
+                <ScalarProperty Name="helpTextEN" ColumnName="helpTextEN" />
+                <ScalarProperty Name="helpTextFR" ColumnName="helpTextFR" />
+                <ScalarProperty Name="noteEN" ColumnName="noteEN" />
+                <ScalarProperty Name="noteFR" ColumnName="noteFR" />
+                <ScalarProperty Name="minValue" ColumnName="minValue" />
+                <ScalarProperty Name="maxValue" ColumnName="maxValue" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="isRequired" ColumnName="isRequired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionTypes">
+            <EntityTypeMapping TypeName="db_aiaModel.QuestionType">
+              <MappingFragment StoreEntitySet="QuestionTypes">
+                <ScalarProperty Name="questionTypeID" ColumnName="questionTypeID" />
+                <ScalarProperty Name="nameEN" ColumnName="nameEN" />
+                <ScalarProperty Name="nameFR" ColumnName="nameFR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScoreHistories">
+            <EntityTypeMapping TypeName="db_aiaModel.ScoreHistory">
+              <MappingFragment StoreEntitySet="ScoreHistories">
+                <ScalarProperty Name="scoreHistoryID" ColumnName="scoreHistoryID" />
+                <ScalarProperty Name="scoreID" ColumnName="scoreID" />
+                <ScalarProperty Name="masterScoreID" ColumnName="masterScoreID" />
+                <ScalarProperty Name="choiceID" ColumnName="choiceID" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="n" ColumnName="n" />
+                <ScalarProperty Name="na" ColumnName="na" />
+                <ScalarProperty Name="tm" ColumnName="tm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scores">
+            <EntityTypeMapping TypeName="db_aiaModel.Score">
+              <MappingFragment StoreEntitySet="Scores">
+                <ScalarProperty Name="scoreID" ColumnName="scoreID" />
+                <ScalarProperty Name="masterScoreID" ColumnName="masterScoreID" />
+                <ScalarProperty Name="choiceID" ColumnName="choiceID" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="n" ColumnName="n" />
+                <ScalarProperty Name="na" ColumnName="na" />
+                <ScalarProperty Name="tm" ColumnName="tm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="db_aiaModel.Section">
+              <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="sectionID" ColumnName="sectionID" />
+                <ScalarProperty Name="formID" ColumnName="formID" />
+                <ScalarProperty Name="titleEN" ColumnName="titleEN" />
+                <ScalarProperty Name="titleFR" ColumnName="titleFR" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="isDisabled" ColumnName="isDisabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

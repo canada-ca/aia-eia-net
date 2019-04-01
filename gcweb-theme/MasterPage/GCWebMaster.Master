@@ -143,6 +143,7 @@
 		        <script src="../gcweb-theme/wet-boew/js/ie8-wet-boew2.min.js"></script>
         <![endif]-->
         <script src="../gcweb-theme/GCWeb/js/theme.min.js"></script>
+        <script src="../../Scripts/custom.js"></script>
     </form>
 </body>
 </html>

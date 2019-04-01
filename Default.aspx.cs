@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AIA
 {
-    public partial class Default : Code.BasePage
+    public partial class Default : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

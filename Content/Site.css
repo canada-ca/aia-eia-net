@@ -1,31 +1,42 @@
-﻿/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿#errors-form1 {
+    display: none;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+fieldset {
+    border-top:none !important;
+    padding: 15px 0;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
+.form-group {
+    padding: 15px 0;
+    margin-bottom:0;
 }
 
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .jumbotron {
-        margin-top: 20px;
-    }
-
-    .body-content {
-        padding: 0;
-    }
+fieldset legend, .form-group {
+    font-weight:700;
+    font-size:16px;
+    line-height:1.65em;
+    color:#333;
 }
+
+.radio-inline, .checkbox-inline {
+
+}
+
+.radio-inline label, .checkbox-inline label {
+    font-weight: normal;
+}
+
+.panel-body {
+    padding: 15px 30px;
+}
+
+.panel-title {
+    display:block;
+    font-size:30px;
+    font-weight:600;
+    padding-bottom:5px;
+    margin-bottom:30px;
+    border-bottom:1px solid #ddd;
+}
+
