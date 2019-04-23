@@ -1,8 +1,4 @@
-﻿#errors-form1 {
-    display: none;
-}
-
-fieldset {
+﻿fieldset {
     border-top:none !important;
     padding: 15px 0;
 }
@@ -17,14 +13,6 @@ fieldset legend, .form-group {
     font-size:16px;
     line-height:1.65em;
     color:#333;
-}
-
-.radio-inline, .checkbox-inline {
-
-}
-
-.radio-inline label, .checkbox-inline label {
-    font-weight: normal;
 }
 
 .panel-body {

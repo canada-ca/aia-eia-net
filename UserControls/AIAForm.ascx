@@ -4,6 +4,9 @@
 <asp:Label ID="lblLastDateModified" CssClass="text-muted sm" runat="server"></asp:Label>
 
 <div class="mrgn-tp-lg">
+
+    <wet:WetSummary ID="wetSummary" runat="server"></wet:WetSummary>
+
     <asp:UpdatePanel ID="upForm" runat="server">
         <ContentTemplate>
 

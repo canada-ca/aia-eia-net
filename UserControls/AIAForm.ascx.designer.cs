@@ -31,6 +31,15 @@ namespace AIA.UserControls {
         protected global::System.Web.UI.WebControls.Label lblLastDateModified;
         
         /// <summary>
+        /// wetSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WetControls.Controls.WetSummary wetSummary;
+        
+        /// <summary>
         /// upForm control.
         /// </summary>
         /// <remarks>
