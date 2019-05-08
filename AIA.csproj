@@ -1882,6 +1882,12 @@
     <Content Include="Models\AIAModel.edmx.diagram">
       <DependentUpon>AIAModel.edmx</DependentUpon>
     </Content>
+    <Content Include="CODE_OF_CONDUCT.md" />
+    <Content Include="CONTRIBUTING.md" />
+    <Content Include="LICENSE" />
+    <Content Include="README.md" />
+    <Content Include="SECURITY.md" />
+    <Content Include=".gitignore" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
