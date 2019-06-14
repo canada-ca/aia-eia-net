@@ -77,7 +77,7 @@ namespace AIA.UserControls
                             {
                                 case 1:
                                     // free text
-                                    pnlSection.Controls.Add(new WetControls.Controls.WetTextbox()
+                                    pnlSection.Controls.Add(new WetControls.Controls.WetTextBox()
                                     {
                                         ID = q.questionID.ToString(),
                                         LabelText = string.Format("{0}. {1}", q.questionNumber, (_lang.Equals("fr") ? q.labelFR : q.labelEN)),
@@ -153,7 +153,7 @@ namespace AIA.UserControls
                                     break;
                                 case 5:
                                     // description
-                                    pnlSection.Controls.Add(new WetControls.Controls.WetTextbox()
+                                    pnlSection.Controls.Add(new WetControls.Controls.WetTextBox()
                                     {
                                         ID = q.questionID.ToString(),
                                         LabelText = string.Format("{0}. {1}", q.questionNumber, (_lang.Equals("fr") ? q.labelFR : q.labelEN)),
